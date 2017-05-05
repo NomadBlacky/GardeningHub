@@ -20,12 +20,20 @@ class MainActivity : AppCompatActivity() {
 
         val fab = findViewById(R.id.fab) as FloatingActionButton
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "そんなものはない", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
 
-        val textView = findViewById(R.id.editText) as TextView
-        textView.text = "hogehogehoge"
+        val textView = findViewById(R.id.editTextGithubUserName) as TextView
+        // TODO: Insert saved username.
+        textView.text = "NomadBlacky"
+
+        val resultView = findViewById(R.id.editTextResult) as TextView
+
+        val execButton = findViewById(R.id.buttonExec)
+        execButton.setOnClickListener {
+            resultView.text = "なにかする"
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
