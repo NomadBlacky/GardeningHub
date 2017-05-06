@@ -35,7 +35,9 @@ class MainActivity : AppCompatActivity() {
         val execButton = findViewById(R.id.buttonExec)
         execButton.setOnClickListener {
             logger.info("onClick")
-            GitHubApiTask(textViewUserName.text.toString(), { resultView.text = it }).execute()
+            GitHubApiTask(textViewUserName.text.toString()) {
+                resultView.text = it
+            }.execute()
         }
     }
 
