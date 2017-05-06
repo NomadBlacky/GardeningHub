@@ -9,7 +9,7 @@ import java.util.logging.Logger
 /**
  * Created by blacky on 17/05/06.
  */
-class GitHubApiTask(val userName: String, val resultView: TextView) : AsyncTask<Void,Void,String>() {
+class GitHubApiTask(val userName: String, val callback: (String?)->Unit) : AsyncTask<Void,Void,String>() {
 
     val logger: Logger = Logger.getLogger(javaClass.name)
 
@@ -24,6 +24,6 @@ class GitHubApiTask(val userName: String, val resultView: TextView) : AsyncTask<
     }
 
     override fun onPostExecute(result: String?) {
-        resultView.text = result
+        callback(result)
     }
 }
