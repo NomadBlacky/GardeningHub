@@ -22,12 +22,6 @@ class MainActivity : AppCompatActivity() {
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
-        val fab = findViewById(R.id.fab) as FloatingActionButton
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "そんなものはない", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
-
         val textViewUserName = findViewById(R.id.editTextGithubUserName) as TextView
         // TODO: Insert saved username.
         textViewUserName.text = "NomadBlacky"
@@ -49,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
+        // menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
@@ -58,7 +52,6 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         val id = item.itemId
-
 
         if (id == R.id.action_settings) {
             return true
