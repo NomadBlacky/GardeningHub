@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
+import com.beust.klaxon.obj
+import com.beust.klaxon.string
 import java.util.logging.Logger
 
 class MainActivity : AppCompatActivity() {
@@ -35,8 +37,12 @@ class MainActivity : AppCompatActivity() {
         val execButton = findViewById(R.id.buttonExec)
         execButton.setOnClickListener {
             logger.info("onClick")
-            GitHubApiTask(textViewUserName.text.toString()) {
-                resultView.text = it
+            GitHubApiTask(textViewUserName.text.toString()) { jsonAry ->
+                jsonAry.fold(StringBuilder()) { sb, jsonObj ->
+                    sb.appendln("${jsonObj.string("type")}: ${jsonObj.obj("repo")?.string("name") ?: "-"}")
+                }.let {
+                    resultView.text = it.toString()
+                }
             }.execute()
         }
     }

@@ -1,15 +1,17 @@
 package org.nomadblacky.gardeninghub
 
 import android.os.AsyncTask
-import android.widget.TextView
-import okhttp3.*
-import java.io.IOException
+import com.beust.klaxon.JsonArray
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.Parser
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import java.util.logging.Logger
 
 /**
  * Created by blacky on 17/05/06.
  */
-class GitHubApiTask(val userName: String, val callback: (String?)->Unit) : AsyncTask<Void,Void,String>() {
+class GitHubApiTask(val userName: String, val callback: (JsonArray<JsonObject>)->Unit) : AsyncTask<Void,Void,String>() {
 
     val logger: Logger = Logger.getLogger(javaClass.name)
 
@@ -24,6 +26,7 @@ class GitHubApiTask(val userName: String, val callback: (String?)->Unit) : Async
     }
 
     override fun onPostExecute(result: String?) {
-        callback(result)
+        val parser = Parser()
+        callback(parser.parse(StringBuilder(result)) as JsonArray<JsonObject>)
     }
 }
