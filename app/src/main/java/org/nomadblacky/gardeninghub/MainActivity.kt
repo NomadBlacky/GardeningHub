@@ -53,6 +53,8 @@ class MainActivity : AppCompatActivity() {
         val id = item.itemId
 
         if (id == R.id.action_settings) {
+            val intent = Intent(this, SettingsActivity::class.java).setAction(Intent.ACTION_VIEW)
+            startActivity(intent)
             return true
         }
 

@@ -31,7 +31,7 @@ abstract class AppCompatPreferenceActivity : PreferenceActivity() {
     }
 
     val supportActionBar: ActionBar
-        get() = delegate.supportActionBar
+        get() = delegate.supportActionBar!!
 
     fun setSupportActionBar(toolbar: Toolbar?) {
         delegate.setSupportActionBar(toolbar)
@@ -91,6 +91,6 @@ abstract class AppCompatPreferenceActivity : PreferenceActivity() {
             if (mDelegate == null) {
                 mDelegate = AppCompatDelegate.create(this, null)
             }
-            return mDelegate
+            return mDelegate!!
         }
 }
